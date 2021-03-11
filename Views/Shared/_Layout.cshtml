@@ -4,33 +4,66 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ProftaakDemo</title>
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body>
-    @*<header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProftaakDemo</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+    <aside class="sidebar">
+        <div class="toggle">
+            <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+                <span></span>
+            </a>
+        </div>
+        <div class="side-inner">
+
+            <div class="profile">
+                <img src="~/images/person_4.jpg" alt="Image" class="img-fluid">
+                <h3 class="name">Jan van Beek</h3>
+                <span class="country">Lid sinds: 2016</span>
             </div>
-        </nav>
-    </header>*@
- 
-            @RenderBody()
-   
+
+            <div class="counter d-flex justify-content-center">
+                <!-- <div class="row justify-content-center"> -->
+                <div class="col">
+                    <strong class="number">6</strong>
+                    <span class="number-label">Posts</span>
+                </div>
+                <div class="col">
+                    <strong class="number">223</strong>
+                    <span class="number-label">Comments</span>
+                </div>
+                <div class="col">
+                    <strong class="number">150</strong>
+                    <span class="number-label">Favourites</span>
+                </div>
+                <!-- </div> -->
+            </div>
+
+            <div class="nav-menu">
+                <ul>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><span class="icon-home mr-3"></span>Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Thema"><span class="icon-search2 mr-3"></span>Thema's</a></li>
+                    <li><a href="#"><span class="icon-notifications mr-3"></span>Notificaties</a></li>
+                    <li><a href="#"><span class="icon-location-arrow mr-3"></span>Profiel</a></li>
+                    <li><a href="#"><span class="icon-pie-chart mr-3"></span>Contact</a></li>
+                    <li><a href="#"><span class="icon-sign-out mr-3"></span>Log Uit</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </aside>
+
+
+
+    @RenderBody()
+
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/main.js"></script>
+
 </body>
 </html>
