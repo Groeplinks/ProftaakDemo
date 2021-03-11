@@ -11,11 +11,12 @@ namespace ProftaakDemo.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IPostRepository _postRepository;
+        //dependency injection
+        public HomeController(IPostRepository postRepository)
         {
-            _logger = logger;
+            _postRepository = postRepository;
         }
 
         public IActionResult Index()
