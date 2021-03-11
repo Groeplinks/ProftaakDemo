@@ -24,9 +24,10 @@ namespace ProftaakDemo.Controllers
             return View();
         }
 
-        public IActionResult Thema1()
+        public IActionResult Thema()
         {
-            return View();
+            var model = _postRepository.GetAllPost();
+            return View(model);
         }
 
         public IActionResult Comments()

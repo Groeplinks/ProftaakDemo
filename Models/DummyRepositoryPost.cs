@@ -13,10 +13,18 @@ namespace ProftaakDemo.Models
         {
             _PostList = new List<Post>()
             {
-                new Post() {Id = 1, Author = "Daniel Brodowski", Title = "db@db.com", Description = "", Tag = ""},
-                new Post() {Id = 2, Author = "Ruben Zwinkels", Title = "db@db.com", Description = "", Tag = ""},
-                new Post() {Id = 3, Author = "Kris Verbakel", Title = "db@db.com", Description = "", Tag = ""}
-                
+                new Post() {Id = 1, Author = "Daniel Brodowski", 
+                            Title = "Dummy Titel Daniel", 
+                            Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",  
+                            Tag = "Tag Daniel"},
+                new Post() {Id = 2, Author = "Ruben Zwinkels", 
+                            Title = "Dummy Titel Ruben", 
+                            Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",  
+                            Tag = "Tag Ruben"},
+                new Post() {Id = 3, Author = "Kris Verbakel", 
+                            Title = "Dummy Titel Kris", 
+                            Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",  
+                            Tag = "Tag Kris"}   
             };
         }
 
