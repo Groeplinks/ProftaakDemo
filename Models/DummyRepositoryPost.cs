@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProftaakDemo.Models
 {
-    public class DummyRepositoryPost
+    public class DummyRepositoryPost : IPostRepository
     {
         private List<Post> _PostList;
 
