@@ -45,5 +45,18 @@ namespace ProftaakDemo.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //Te gebruiken bij het aanmaken van een nieuwe post
+        [HttpPost]
+        public IActionResult Create(Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                Post newPost = _postRepository.Add(post);
+                return RedirectToAction("Thema");
+            }
+
+            return View();
+        }
     }
 }
