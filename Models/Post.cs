@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProftaakDemo.Models
 {
-    public class Post
+    public class Post : IPost
     {
         public int Id { get; set; }
         [Required]
@@ -16,6 +16,6 @@ namespace ProftaakDemo.Models
         public string Author { get; set; }
         public string Description { get; set; }
         public string Tag { get; set; }
-        
+
     }
 }
