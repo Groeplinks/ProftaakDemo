@@ -22,7 +22,6 @@ namespace ProftaakDemo.Controllers
             
             return View(posts);
         }
-
         public IActionResult Posts()
         {
             List<IPost> posts = DummyRepositoryPost.GetAllPost();
