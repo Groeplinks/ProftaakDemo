@@ -1,0 +1,72 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<IPost>
+
+<div class="header">
+    <div class="info" style="padding:50px;">
+        <h1>Forum D66/Groen Links Horst aan de Maas</h1>
+        <h3>Samen staan we sterker</h3>
+        <div class="">
+            <img src="https://horstaandemaas.d66.nl/content/uploads/sites/256/2018/02/d66Gl.png" /><br>
+            Volg ons ook op <a href="https://www.facebook.com/gemeenteHadM/" target="_b">Facebook</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="border-bottom: 2px solid green">
+    <h1 class="row" style="text-align: center"> Recente Berichten </h1>
+    <a style="text-align: center" asp-action="CreatePostPage" value="Create" class="mb-2 row btn btn-primary">Maak een nieuw bericht</a>
+</div>
+
+@if (Model.Count() == 0)
+{
+    <div>
+        <h1 style="text-align: center">Er zijn nog geen berichten!</h1>
+    </div>
+}
+
+else
+{
+    @foreach (var post in Model)
+    {
+        <div class="blog-container">
+
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <h3>@post.Author</h3>
+                </div>
+            </div>
+
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1><a href="#">@post.Title</a></h1>
+                </div>
+                <div class="blog-summary">
+                    <p>@post.Description</p>
+                </div>
+                <div class="blog-tags">
+                    <ul>
+                        <li><a href="#">@post.Tag</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="blog-footer">
+                <ul>
+                    <li class="published-date">2 dagen geleden</li>
+                    <li class="comments">
+                        <a asp-area="" asp-controller="Home" asp-action="Comments">
+                            <svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span>
+                        </a>
+                    </li>
+                    <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    }
+}

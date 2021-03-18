@@ -23,6 +23,13 @@ namespace ProftaakDemo.Controllers
             return View(posts);
         }
 
+        public IActionResult Posts()
+        {
+            List<IPost> posts = DummyRepositoryPost.GetAllPost();
+
+            return View(posts);
+        }
+
         public IActionResult Comments()
         {
             return View();
@@ -52,7 +59,7 @@ namespace ProftaakDemo.Controllers
             {
                 DummyRepositoryPost.Add(post);
                 
-                return RedirectToAction("Thema");
+                return RedirectToAction("Posts");
             }
 
             return RedirectToAction("CreatePostPage");
