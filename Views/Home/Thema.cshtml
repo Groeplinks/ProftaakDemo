@@ -28,15 +28,6 @@
         </defs>
     </svg>
 
-    @if (Model.Count() == 0)
-    {      
-        <div>
-            <h1 style="text-align: center">Er zijn nog geen berichten in dit Thema</h1>
-        </div>
-    }
-
-    else
-    {
         @foreach (var post in Model)
         {
             <div class="blog-container">
@@ -75,9 +66,8 @@
 
             </div>
         }
-    }
 
-    @*<div class="blog-container">
+    <div class="blog-container">
 
             <div class="blog-header">
                 <div class="blog-author--no-cover">
@@ -181,7 +171,7 @@
                 </ul>
             </div>
 
-        </div>*@
+        </div>
 
 
 </section>

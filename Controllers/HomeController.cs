@@ -59,7 +59,7 @@ namespace ProftaakDemo.Controllers
             {
                 DummyRepositoryPost.Add(post);
                 
-                return RedirectToAction("Posts");
+                return RedirectToAction("Thema");
             }
 
             return RedirectToAction("CreatePostPage");
