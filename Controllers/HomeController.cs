@@ -11,21 +11,16 @@ namespace ProftaakDemo.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Thema1()
+        public IActionResult Thema()
         {
-            return View();
+            List<IPost> posts = DummyRepositoryPost.GetAllPost();
+            
+            return View(posts);
         }
 
         public IActionResult Comments()
@@ -38,10 +33,29 @@ namespace ProftaakDemo.Controllers
             return View();
         }
 
+        public IActionResult CreatePostPage()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        //Te gebruiken bij het aanmaken van een nieuwe post
+        [HttpPost]
+        public IActionResult Create(Post post)
+        {
+            if (ModelState.IsValid)
+            {
+                DummyRepositoryPost.Add(post);
+                
+                return RedirectToAction("Thema");
+            }
+
+            return RedirectToAction("CreatePostPage");
         }
     }
 }
