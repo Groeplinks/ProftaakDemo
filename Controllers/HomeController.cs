@@ -11,7 +11,6 @@ namespace ProftaakDemo.Controllers
 {
     public class HomeController : Controller
     {
-
         public IActionResult Index()
         {
             return View();
@@ -56,7 +55,7 @@ namespace ProftaakDemo.Controllers
                 return RedirectToAction("Thema");
             }
 
-            return View();
+            return RedirectToAction("CreatePostPage");
         }
     }
 }
