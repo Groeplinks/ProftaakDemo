@@ -11,14 +11,6 @@ namespace ProftaakDemo.Controllers
 {
     public class HomeController : Controller
     {
-
-        private readonly IPostRepository _postRepository;
-        //dependency injection
-        public HomeController(IPostRepository postRepository)
-        {
-            _postRepository = postRepository;
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -26,8 +18,9 @@ namespace ProftaakDemo.Controllers
 
         public IActionResult Thema()
         {
-            var model = _postRepository.GetAllPost();
-            return View(model);
+            List<IPost> posts = DummyRepositoryPost.GetAllPost();
+            
+            return View(posts);
         }
 
         public IActionResult Comments()
@@ -36,6 +29,11 @@ namespace ProftaakDemo.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult CreatePostPage()
         {
             return View();
         }
@@ -52,11 +50,12 @@ namespace ProftaakDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                Post newPost = _postRepository.Add(post);
+                DummyRepositoryPost.Add(post);
+                
                 return RedirectToAction("Thema");
             }
 
-            return View();
+            return RedirectToAction("CreatePostPage");
         }
     }
 }

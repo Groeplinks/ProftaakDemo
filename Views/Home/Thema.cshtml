@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Post>
+﻿@model IEnumerable<IPost>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -11,9 +11,10 @@
     </div>
 </div>
 <section class="content">
-
-    <h1 style="text-align: center"> Recente Berichten </h1>
-
+    <div class="container" style="border-bottom: 2px solid green">
+        <h1 class="row" style="text-align: center"> Recente Berichten </h1>
+        <a style="text-align: center" asp-action="CreatePostPage" value="Create" class="mb-2 row btn btn-primary">Maak een nieuw bericht</a>
+    </div>
     <svg display="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
             <symbol id="icon-bubble" viewBox="0 0 1024 1024">
@@ -27,7 +28,7 @@
         </defs>
     </svg>
 
-    @foreach (var post in Model)
+    @if (Model.Count() == 0)
     {
         <div class="blog-container">
 
@@ -63,115 +64,159 @@
                 </ul>
             </div>
 
+
+            <h1>No Posts in this Theme yet</h1>
+
         </div>
     }
 
+    else
+    {
+        @foreach (var post in Model)
+        {
+            <div class="blog-container">
 
-    <div class="blog-container">
+                <div class="blog-header">
+                    <div class="blog-author--no-cover">
+                        <h3>@post.Author</h3>
+                    </div>
+                </div>
 
-        <div class="blog-header">
-            <div class="blog-author--no-cover">
-                <h3>Jan Jansen</h3>
-            </div>
-        </div>
+                <div class="blog-body">
+                    <div class="blog-title">
+                        <h1><a href="#">@post.Title</a></h1>
+                    </div>
+                    <div class="blog-summary">
+                        <p>@post.Description</p>
+                    </div>
+                    <div class="blog-tags">
+                        <ul>
+                            <li><a href="#">@post.Tag</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="blog-body">
-            <div class="blog-title">
-                <h1><a href="#">Lockdown in de gemeente Horst aan de Maas</a></h1>
+                <div class="blog-footer">
+                    <ul>
+                        <li class="published-date">2 dagen geleden</li>
+                        <li class="comments">
+                            <a asp-area="" asp-controller="Home" asp-action="Comments">
+                                <svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span>
+                            </a>
+                        </li>
+                        <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="blog-summary">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+        }
+    }
+
+    @*<div class="blog-container">
+
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <h3>Jan Jansen</h3>
+                </div>
             </div>
-            <div class="blog-tags">
+
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1><a href="#">Lockdown in de gemeente Horst aan de Maas</a></h1>
+                </div>
+                <div class="blog-summary">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                </div>
+                <div class="blog-tags">
+                    <ul>
+                        <li><a href="#">tag 1</a></li>
+                        <li><a href="#">tag 2</a></li>
+                        <li><a href="#">tag 3</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="blog-footer">
                 <ul>
-                    <li><a href="#">tag 1</a></li>
-                    <li><a href="#">tag 2</a></li>
-                    <li><a href="#">tag 3</a></li>
+                    <li class="published-date">2 dagen geleden</li>
+                    <li class="comments"><a href="#"><svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span></a></li>
+                    <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
                 </ul>
             </div>
+
         </div>
 
-        <div class="blog-footer">
-            <ul>
-                <li class="published-date">2 dagen geleden</li>
-                <li class="comments"><a href="#"><svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span></a></li>
-                <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
-            </ul>
-        </div>
+        <div class="blog-container">
 
-    </div>
-
-    <div class="blog-container">
-
-        <div class="blog-header">
-            <div class="blog-author--no-cover">
-                <h3>Bas Meijers</h3>
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <h3>Bas Meijers</h3>
+                </div>
             </div>
-        </div>
 
-        <div class="blog-body">
-            <div class="blog-title">
-                <h1><a href="#">Welke test-locaties zijn er?</a></h1>
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1><a href="#">Welke test-locaties zijn er?</a></h1>
+                </div>
+                <div class="blog-summary">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                </div>
+                <div class="blog-tags">
+                    <ul>
+                        <li><a href="#">tag 1</a></li>
+                        <li><a href="#">tag 2</a></li>
+                        <li><a href="#">tag 3</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="blog-summary">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-            <div class="blog-tags">
+
+            <div class="blog-footer">
                 <ul>
-                    <li><a href="#">tag 1</a></li>
-                    <li><a href="#">tag 2</a></li>
-                    <li><a href="#">tag 3</a></li>
+                    <li class="published-date">2 dagen geleden</li>
+                    <li class="comments">
+                        <a asp-area="" asp-controller="Home" asp-action="Comments">
+                            <svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span>
+                        </a>
+                    </li>
+                    <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
                 </ul>
             </div>
+
         </div>
 
-        <div class="blog-footer">
-            <ul>
-                <li class="published-date">2 dagen geleden</li>
-                <li class="comments">
-                    <a asp-area="" asp-controller="Home" asp-action="Comments">
-                        <svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span>
-                    </a>
-                </li>
-                <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
-            </ul>
-        </div>
+        <div class="blog-container">
 
-    </div>
-
-    <div class="blog-container">
-
-        <div class="blog-header">
-            <div class="blog-author--no-cover">
-                <h3>Willem van Dijk</h3>
+            <div class="blog-header">
+                <div class="blog-author--no-cover">
+                    <h3>Willem van Dijk</h3>
+                </div>
             </div>
-        </div>
 
-        <div class="blog-body">
-            <div class="blog-title">
-                <h1><a href="#">Welke winkels blijven open?</a></h1>
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1><a href="#">Welke winkels blijven open?</a></h1>
+                </div>
+                <div class="blog-summary">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                </div>
+                <div class="blog-tags">
+                    <ul>
+                        <li><a href="#">tag 1</a></li>
+                        <li><a href="#">tag 2</a></li>
+                        <li><a href="#">tag 3</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="blog-summary">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
-            <div class="blog-tags">
+
+            <div class="blog-footer">
                 <ul>
-                    <li><a href="#">tag 1</a></li>
-                    <li><a href="#">tag 2</a></li>
-                    <li><a href="#">tag 3</a></li>
+                    <li class="published-date">2 dagen geleden</li>
+                    <li class="comments"><a href="#"><svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span></a></li>
+                    <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
                 </ul>
             </div>
-        </div>
 
-        <div class="blog-footer">
-            <ul>
-                <li class="published-date">2 dagen geleden</li>
-                <li class="comments"><a href="#"><svg class="icon-bubble"><use xlink:href="#icon-bubble"></use></svg><span class="numero">4</span></a></li>
-                <li class="shares"><a href="#"><svg class="icon-star"><use xlink:href="#icon-star"></use></svg><span class="numero">1</span></a></li>
-            </ul>
-        </div>
-
-    </div>
+        </div>*@
 
 
 </section>
